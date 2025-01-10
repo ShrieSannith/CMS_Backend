@@ -1,16 +1,16 @@
-const express = require('express'); 
-const signuproute = require('./routes/signup');
-const loginroute = require('./routes/login');
-const userroute = require('./routes/user');
-const formsroute = require('./routes/forms');
-const logoutroute = require('./services/logout');
-const callroute = require('./routes/callRoutes');
-const callLogRoutes = require('./routes/callLogRoute'); 
+const express = require("express");
+const signuproute = require("./routes/signup");
+const loginroute = require("./routes/login");
+const userroute = require("./routes/user");
+const formsroute = require("./routes/forms");
+const logoutroute = require("./services/logout");
+const callroute = require("./routes/callRoutes");
+const callLogRoutes = require("./routes/callLogRoute");
 
-const bodyParser = require('body-parser');
-const cors = require('cors');
+const bodyParser = require("body-parser");
+const cors = require("cors");
 const createAdminAccount = require("./scripts/admin");
-const redirectCalls = require('./twilio/redirectCalls');
+const redirectCalls = require("./twilio/redirectCalls");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -31,6 +31,10 @@ app.use("/api/calls", callroute); // Add the call routes
 app.use("/calls", callLogRoutes); // Add the call routes
 app.use("/twilio", redirectCalls);
 
-app.listen(PORT, () => { 
-    console.log(`Listening to port: ${PORT}`);
+app.get("/", (req, res) => {
+  res.send("Hello World, from express");
+});
+
+app.listen(PORT, () => {
+  console.log(`Listening to port: ${PORT}`);
 });
